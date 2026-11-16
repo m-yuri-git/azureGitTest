@@ -1,0 +1,20 @@
+name : Deploy to Azure App Service
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: リポジトリを所得
+        uses: actions/checkout@v4
+
+      - name: APP Serviceに公開
+        uses: azure/webapps-deploy@v3
+        with:
+          app-name: "ih12b25gittest"
+          publish-profile: ${{secrets.AZURE_WEBAPP_PUBLISH_PROFILE}}
